@@ -75,6 +75,23 @@ plt.ylabel("Video game global sales")
 plt.scatter (best_games_score,best_games_sales)
 plt.show()
 
+data = pd.read_csv("Video_Games.csv", nrows=100)
+best_games = data.nlargest(20, "Global_Sales")
+best_games_year = best_games["Year_of_Release"]
+best_games_na_sales = best_games["NA_Sales"]
+best_games_eu_sales = best_games["EU_Sales"]
+best_games_jp_sales = best_games["JP_Sales"]
+best_games_score = best_games["Critic_Score"]
+best_games_genre = best_games["Genre"]
+top_publishers = data.groupby("Publisher")["Global_Sales"].sum().nlargest(5)
+top_publishers_names = top_publishers.index
+top_publishers_sales = top_publishers.values
+genre_sales = data.groupby("Genre")["Global_Sales"].sum().nlargest(6)
+genre_labels = genre_sales.index
+genre_values = genre_sales.values
+best_games_user_score = best_games["User_Score"]
+best_games_sales = best_games["Global_Sales"]
+
 #Multi line plot showing the correlation between critic/user score and global sales
 
 plt.title("Comparison of critic score, user score, and global sales of top 20 video games")
@@ -95,21 +112,18 @@ plt.ylabel("Global sales (in million units)")
 plt.bar(top_publishers_names, top_publishers_sales, color=['blue', 'orange', 'green', 'pink', 'violet'])
 plt.show()
 
-#Grid showing the critic/user score and the user count of the 15 most selling games
+#Histogram showing the critic/user score and the user count of the 15 most selling games
 
-plt.title("Critic score, user score, and user count for top 15 games")
-plt.xlabel("Game index")
-plt.ylabel("Value")
-plt.plot(top_15_games["Critic_Score"], color='r', label='Critic Score')
-plt.plot(top_15_games["User_Score"], color='b', label='User Score')
-plt.plot(top_15_games["User_Count"], color='g', label='User Count')
-plt.legend()
-plt.grid(True)
+plt.title("Distribution of critic scores for the top 20 best-selling video games")
+plt.xlabel("Critic score")
+plt.ylabel("Number of games")
+plt.hist(best_games_score.dropna(), bins=10, color='lightcoral', edgecolor='black')
 plt.show()
+
 
 
 #Pie Chart showing which genre has the most global sales.
 
 plt.title("Proportion of global sales by genre")
 plt.pie(genre_values, labels=genre_labels, autopct='%1.1f%%', startangle=140)
-plt.show() 
+plt.show()
