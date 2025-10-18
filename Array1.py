@@ -1,9 +1,8 @@
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 
 data= pd.read_csv("Video_Games.csv")
-
+#ismail
 best_games = [] 
 best_games_score=[]
 best_games_sales=[]
@@ -75,6 +74,7 @@ plt.ylabel("Video game global sales")
 plt.scatter (best_games_score,best_games_sales)
 plt.show()
 
+#Danial
 data = pd.read_csv("Video_Games.csv", nrows=100)
 best_games = data.nlargest(20, "Global_Sales")
 best_games_year = best_games["Year_of_Release"]
@@ -92,7 +92,7 @@ genre_values = genre_sales.values
 best_games_user_score = best_games["User_Score"]
 best_games_sales = best_games["Global_Sales"]
 
-#Multi line plot showing the correlation between critic/user score and global sales
+# (C) Multi line plot showing the correlation between critic/user score and global sales
 
 plt.title("Comparison of critic score, user score, and global sales of top 20 video games")
 plt.xlabel("Game index")
@@ -104,7 +104,7 @@ plt.legend()
 plt.show()
 
 
-#Bar Plot showing the top 5 pblishers with the most video game sales
+# (G) Bar Plot showing the top 5 pblishers with the most video game sales
 
 plt.title("Top 5 publishers by total global video game sales")
 plt.xlabel("Publisher")
@@ -112,7 +112,7 @@ plt.ylabel("Global sales (in million units)")
 plt.bar(top_publishers_names, top_publishers_sales, color=['blue', 'orange', 'green', 'pink', 'violet'])
 plt.show()
 
-#Histogram showing the critic/user score and the user count of the 15 most selling games
+# (H) Histogram showing the critic/user score and the user count of the 15 most selling games
 
 plt.title("Distribution of critic scores for the top 20 best-selling video games")
 plt.xlabel("Critic score")
@@ -122,7 +122,7 @@ plt.show()
 
 
 
-#Pie Chart showing which genre has the most global sales.
+# (I) Pie Chart showing which genre has the most global sales.
 
 plt.title("Proportion of global sales by genre")
 plt.pie(genre_values, labels=genre_labels, autopct='%1.1f%%', startangle=140)
