@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 #Part 2 : Preliminary steps
 data= pd.read_csv("Video_Games.csv")
 
-#! overview of data
-<<<<<<< HEAD
+#overview of data
+
 #print(data.head())   # Shows first rows
 
 #print(data.shape)    # Shows number of rows/columns
@@ -287,6 +287,6 @@ sns.catplot(data=pd.melt(data[data["Genre"].isin(data["Genre"].value_counts().in
 #j (Q2)
 data["Diff_of_1.5"] = ((data["Critic_Score"] / 10 - data["User_Score"]) >= 1.5)
 sns.catplot(data=data, x="Diff_of_1.5", kind="count")
-<<<<<<< HEAD
+
 
 #This graph shows clearly that the majority of games have similar user score and critic score
