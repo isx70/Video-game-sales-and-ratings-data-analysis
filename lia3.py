@@ -290,3 +290,35 @@ sns.catplot(data=data, x="Diff_of_1.5", kind="count")
 
 
 #This graph shows clearly that the majority of games have similar user score and critic score
+
+
+#6.3 
+
+
+#a
+# Filter data (2000–2016)
+data_2016 = data[(data["Year_of_Release"] >= 2000) & (data["Year_of_Release"] <= 2016)]
+
+sns.histplot(data=data_2016,x="Critic_Score",y="Global_Sales",bins=30,cbar=True,)
+plt.yscale("log")   #makes sales more readable
+#Heatmap of critic score and global sales between 2000 and 2016 (Question 1)
+
+
+#b
+
+#critic score is on 100 so we create a new column with critic score on 10
+data["Critic_Score_10"] = data["Critic_Score"] / 10
+
+sns.displot(data=data,x="Critic_Score_10",y="User_Score",kind="kde",)
+#KDE plot of user score and critic score (Question 2)
+
+#c
+
+plt.title("3-Variable KDE: Critic Score vs User Score (Hue = Score Difference)")
+# 5-year periods
+bins = [1995, 2000, 2005, 2010, 2015, 2020]
+labels = ["1995–1999", "2000–2004", "2005–2009", "2010–2014", "2015–2019"]
+data["Period"] = pd.cut(data["Year_of_Release"], bins=bins, labels=labels)
+
+#KDE with Critic Score Global Sale and Period (Question 3)
+sns.displot(data=data,x="Critic_Score" ,y="Global_Sales", col="Period",kind="kde",)
